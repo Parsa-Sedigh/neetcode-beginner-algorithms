@@ -62,7 +62,7 @@ is it can't eliminate half of the remaining possibilities every single time.
 So if the BST is not balanced, the search algo in the worst case would be `O(n)`. But the reason we have BSTs is to have balanced BSTs and it's
 usually assumed that if you're working with a BST, you do have a balanced BST.
 
-In terms of technicallity, the time complexity of running search is O(h) where is the height of the tree. Because for an inbalanced BST, the
+In terms of technicality, the time complexity of running search is O(h) where is the height of the tree. Because for an inbalanced BST, the
 height would be `n`, because we just have a list of nodes one after another in an inbalanced way, but for a balanced BST, the height would be
 `logn`, for similar reasons we talked especially when it comes to merge sort since in every level of BST, the number of nodes are being multiplied
 by 2, so then the **height** of the tree would be `logn`.
