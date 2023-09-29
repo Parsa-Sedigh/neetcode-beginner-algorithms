@@ -128,8 +128,8 @@ Note: The heap itself is just a dynamic array.
 ### Pop
 Removing from the heap aka popping from the heap
 
-We don't actually specify a value that we wanna pop because remember our priority queue is about popping the priority element and we know that
-the minimum is gonna be at the root, so that's the one that we're always gonna pop. It seems simple but actually popping is more complicated
+**We don't actually specify a value that we wanna pop because remember our priority queue is about popping the priority element and we know that
+the minimum is gonna be at the root, so that's the one that we're always gonna pop.** It seems simple but actually popping is more complicated
 than pushing(inserting).
 
 If we just wanted to **read** the top element, in other words we just wanted to read what the minimum element is in our priority queue,
@@ -263,7 +263,7 @@ So **percolating down is gonna be more efficient**.
 
 **Note:** Percolating down is `O(log n)` operation.
 
-**Note:Heapify algo is O(n).**
+**Note: Heapify algo is O(n).**
 
 **Note: You can push and pop from heap in O(log n) and you can get the min or max depending on what type of heap you have in O(1)**
 
