@@ -248,5 +248,35 @@ Note: DFS on a matrix comes up quite often.
 ![](../img/11-graphs/30-2.png)
 
 ## 31 Matrix BFS
+We go layer by layer.
+
+What type of question would this algo apply to?
+
+By far the most common is the "shortest path" algo. Like shortest path from top left to bottom right and then return that.
+
+The most efficient way is the BFS algo. We could also use DFS if we wanted to. Which means checking every single possible way that we can
+reach the destination and then find the length of the shortest one, but that's a brute force approach. BFS is actually more efficient.
+Time complexity of **BFS** is going to be the size of the grid like `O(n * m)` where n is number of rows and m number of columns.
+Whereas in **DFS**, it would be `O(4^n*m)`.
+
+Note: In the img, the nodes in the same layer have the same color(layer means each layer that we visit(add to the queue) in BFS) and the
+length of each layer is written below of the grid.
+
+Note: We don't actually know **what is** the shortest path, we're not keeping track of that. We just care about the **length** of the
+shortest path.
+
+Note: We're not checking if we arrived to the destination when we're adding to the queue and visit hashset. So we don't return the
+result as soon as we arrived to the destination. We return the result(ending the algo). After we pop from the queue is when we
+check is this(the node we're popping) the destination?
+We could've check if we're at the destination when we're adding to the queue which would give us the result and ending the algo faster,
+we just need to re-write that if block which has `return length` when we're adding to the queue.
+
+![](../img/11-graphs/31-1.png)
+
+With this approach(BFS), we're never gonna visit the same position twice, so we're never gonna add the same position to the queue twice.
+Worst case we visit the entire grid once. So in that case the time complexity would be the dimensions of the grid which is `O(n * m)`.
+The space would be the same, because that's the max size that our visit hashset or our queue could end up being.
+
+`Time = Space : O(n * m)`
 
 ## 32 Adjacency List
