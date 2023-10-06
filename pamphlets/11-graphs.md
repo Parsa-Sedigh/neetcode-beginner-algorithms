@@ -280,3 +280,88 @@ The space would be the same, because that's the max size that our visit hashset 
 `Time = Space : O(n * m)`
 
 ## 32 Adjacency List
+These are much simpler to run an algo on, rather than on a matrix.
+
+One way to represent the adjacency lists, we use the GraphNode class. But when it comes to interviews, it's actually much more
+common to just use a hashmap to represent an adjacency list. Because as you know there are two things that we care about:
+the value or id of each node, as long as it's unique and for interviews it's almost always unique. Each node will have sth that uniquely
+identifies it, whether it's an integer or character or string. That value of node is gonna be the key for that node in the adjacency list
+hashmap. The value for that key is gonna be a list which is the list of neighbors.
+
+A common algo in interviews is usually you're not just given the adjacency list itself, you have to build it yourself. You are given
+enough info to build it. The most common thing is you're given a list of edges. For example these are directed edges:
+`edges = [["A", "B"], ["B", "C"], ["B", "E"], ["C", "E"], ["E", "D"]]`
+and we wanna build an adjacency list with them.
+
+How do we build an adjacency list? Look at `32-1.py`.
+
+Note: From the edges, we can imply what the nodes are.
+
+Now let's run common algos like DFS and BFS on adjacency list.
+![](../img/11-graphs/32-1.png)
+
+### DFS on adjacency list
+In adjacency lists, we don't have a lot of edge cases to worry about like going out of bounds and ... .
+
+The `visit` is gonna keep track of visited noes along a single path.
+
+Note: In the code, we specify a target. Which means it's possible that we don't end up visiting all nodes of the graph, because we only need to
+get all the paths from node to `target`. For example, in the img, we won't visit D at all because we didn't need to. Whenever we get to the
+target(E in this case), the second base case is gonna get executed.
+
+So this is much more simple than running it on a matrix.
+![](../img/11-graphs/32-2.png)
+
+Time complexity: To analyze this type of brute force backtracking DFS approach. We know that we're gonna go through every single possible path
+in the entire graph(because we have to count the paths), so that could be the worst case. The length of a path is going to be no larger
+than the number of vertices, because we can only visit each vertex once along a given path. So that is kinda represent the
+height of our decision tree. Now for each vertex, how many choices could we have? In the worst case, it would be every vertex is connected
+to every other vertex, so that would mean v choices. Let's say N is the average number of edges that each node has. This is slightly more common
+way of talking about it.
+
+The height of the decision tree is `v`
+
+The number of choices we can make is N where N is the average number of edges that each vertex has.
+
+So by analyzing this as a binary tree, the time complexity is `N^v`. So `O(N^v)`.
+So the DFS(backtracking) is not gonna be efficient. Just like most backtracking algos, this is exponential. We know it's exponential
+because the power here(v) is a variable. If we had n^2, that's not the end of the world because the power is a constant. With
+exponential time complexity, as the size of our graph grows, v is gonna grow and therefore time complexity gonna grow exponential and the
+growth would be extremely quickly. So this algo is very inefficient. BFS is much more efficient.
+
+The decision tree means: all the decisions that we can make when we're counting the paths on this graph.
+
+So the idea of how long a path could be and how many choices do we have at each node is important.
+
+In the img, all the nodes that we can reach with that colored length(number) from the `node` is specified. So with length of 1, we can
+reach the nodes that are purple and ... .
+The green nodes show all the nodes that we can reach with path length of 2.
+
+![](../img/11-graphs/32-3.png)
+
+### Time & Space
+**Time:** The size of the graph as BFS in a matrix. But earlier(for a matrix), the size of the graph was n * m, so the time would be `O(n * m)`
+and technically what we didn't count for when we were doing that were the edges. The n * m is the number of **nodes** in the matrix graph but
+the number of edges for each node was 4. So technically the time complexity for running BFS on a matrix is `O(4 * n * m)`. But we know
+we don't care about constants in big O, so the time complexity of BFS on matrix would be O(n * m).
+
+But in the case of running BFS on adjacency list, let's say the number of nodes is v(stands for vertices), so that's the size of the graph.
+But how many edges could each node have? Well technically `v`. Because we know `E <= V^2`, **because each vertex could have V edges**.
+So if we're talking about edges for each node multiplied by total number of nodes(v), it could be V * V. So the time of BFS on adjacency list is
+`O(v^2)`. But we don't write it this way, because we know for sure this is not a full graph where every single node has the maximum number of 
+edges. So to be more accurate, we could say the size of this graph is V(number of vertices), because we potentially have to
+visit every single nodes in the worst case(with BFS we have to add each of the vertices to our `visit` hashset), but we might also have to
+travel along every single edge, which may not necessarily be equal to `V`, it could be greater or it could be less, so to be more accurate,
+we say the time complexity for BFS on adjacency list is `O(V + E)`, where E is number of edges in the graph.
+
+**Space:** We know in the worst case we could add every single node to the `visit` hashset and every single node to the `queue`.
+So the memory complexity is `O(V)` where V is number of vertices.
+
+What if the edges have weight attached to them?
+
+Currently, we're assuming each of the edges have the same weight, we treat them the same. Buw what if the length of an edge(weight of it)
+was more than the other? Like the distances between cities, some of them are shorter but some of them longer. What would be the shortest
+path in that case?
+
+Our BFS algo could return wrong result in that case. There is a much complicated algo that can account for the edges that have weight or value
+attached to them. But that algo is also based on BFS(it's a modified version) to solve the shortest path problem. Check out advanced course.

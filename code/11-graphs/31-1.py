@@ -24,7 +24,7 @@ def bfs(grid):
                 return length
 
             # These are not actually the neighbors necessarily. These are the directions.
-            # For example [0, 1] would represent the right direction, [0, 1] is left, [1, 0] below and [-1, 0] above
+            # For example [0, 1] would represent the right direction, [0, -1] is left, [1, 0] below and [-1, 0] above
             # Note: These lines are kinda boilerplate to go through all 4 directions of the current node in the queue.
             neighbors = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 
