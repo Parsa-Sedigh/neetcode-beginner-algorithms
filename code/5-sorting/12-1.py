@@ -2,6 +2,7 @@
 # s: start
 # e: end
 def mergeSort(arr, s, e):
+    # e - s + 1 is the length of the subarray
     if e - s + 1 <= 1:
         return arr
 
