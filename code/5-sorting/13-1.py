@@ -7,6 +7,8 @@ def quickSort(arr, s, e):
         return
 
     pivot = arr[e]
+
+    # This pointer tells us where we should insert the next value that's less than or equal to the pivot
     left = s # pointer for left side
 
     # Partition: elements smaller than pivot on left side
@@ -22,7 +24,8 @@ def quickSort(arr, s, e):
     arr[e] = arr[left]
     arr[left] = pivot
 
-    # Quick sort left side
+    # Quick sort left side we're taking left - 1 because we know `left` is the index where we put our pivot and we
+    # know the pivot is in the perfect spot. So we ignore it for the rest of the algo.
     quickSort(arr, s, left - 1)
 
     # Quick sort right side

@@ -118,7 +118,7 @@ Is log n really that much more efficient than n?
 
 Yes the comparison between n and 2^n is the same comparison between n and log n . **log n grows so much more slowly than n**.
 
-Think about decreenting 8 to 1:
+Think about decrementing 8 to 1:
 - in O(n), it's 8 -> 7 -> 6 -> ... -> 1
 - in O(log n), it's 8 -> 4 -> 2 -> 1
 
@@ -126,5 +126,87 @@ So for really big numbers, it's gonna be a lot faster. **So O(log n) is very ver
 
 ## 13 QUICK SORT
 Very similar to merge sort.
+
+The idea is instead of splitting the array into two equal halfs and then sorting those halfs, we're gonna pick a random value and for convenience
+we usually pick the rightmost(last) value and this is called the pivot value.
+
+We're gonna iterate through every single value in the input array except the pivot, so every value before pivot and we're gonna compare
+that value to the pivot and every value that's less than or equal to the pivot, is going to be in the left partition of the array.
+
+So in the left partition, every value is less than or equal to pivot and every value that's greater than the pivot is in the right partition.
+
+We can perform the partition in-place which means we don't need to allocate any extra memory to do the partition.
+For this, we need two pointers. One pointer is for iterating the array and the second pointer is gonna tell us where we should insert the next value
+that is less than or equal to the pivot.
+
+When we hit a value that is less than or equal to the pivot, we swap the values that the pointers point to and move the second pointer forward.
+
+The first pointer(for loop) moves forward until it reaches the pivot.
+
+We wanted to partition the input array such that every value less than or equal to the pivot is moved to the left side and every value greater than
+pivot on the right side of those smaller values(but the pivot is at the end).
+
+Where should we put the pivot itself to satisfy that?
+
+We can use where out second pointer points at currently. Every value before the pointer is less than or equal to pivot. That is a good position
+to put our pivot at.
+
+So now we perform one last swap between where our left pointer(the pointer that marks the end of our small values) and our pivot.
+
+Just because we partition the array, does not mean the sub-arrays are sorted in themselves. But what is true is that every value on the left subarray
+is less than every value on the right subarray.
+
+Now split the array into two pieces based on where the second pointer is(the pointer that points to the last small element which is now where
+the pivot which was swapped, lives).
+
+Now the recursive step comes in. Now let's run quick sort on left and right subarrays.
+
+The last element of left subarray is already in sorted order because it was the pivot. Everything to the left of it is less than or equal to it and
+everything to the right of it is greater than to it. So we can ignore this element. So it does exist but we're not focusing on it, when we run
+quick sort on left subarray, we ignore the last element, because the last one is already where it needs to be. This is always gonna be true for the
+pivot value.
+
+Now the one to last element of the left subarray is the pivot(we ignored the last element because it's already sorted), now repeat the quick sort.
+
+**With quicksort, we're not allocating any extra memory.**
+
+The time complexity **looks** similar to mergesort because we're breaking it up roughly into equal halfs, but the thing about the pivot is
+we're always picking the last element and **it might not result in equal halfs**. For a not equal partitions, consider this example:
+[1, 2, 3, 4, 6], after partitioning(which happens in place, no extra memory, we just use pointers), we have: [1, 2, 3, 4] and [6] and ... .
+The visualization is:
+![](1)
+
+The height of the tree is n(the case where we don't have equal halfs). But if we split it into equal halfs, we know the height of it
+is gonna be `log n`. But when we're not splitting into halfs, the height of the tree in the worst case is gonna be `n`.
+Now for each level, we have to iterate through approximately the size of the input because that's approximately how many elements we have on each
+level. Why approximately? Because we don't iterate on the pivots.
+
+**In that case, the overall time complexity becomes `O(n^2)` in the worst case. This shows quicksort is not necessarily better than mergesort. But on
+average, this is not gonna happen. This was the worst possible case where the input is already sorted.** One way to get around this, is not to pick
+the pivot as the last element, it's to take the first value, the middle value and the last value and among those three, choose the middle value
+and then use that as the pivot.
+
+So the way we've been selecting our pivot is a bit naive. There are optimizations that we can do which will help us to make sure that we
+don't hit the worst possible case.
+
+So on average(if we do split the array into two roughly equal halfs), then the time would be similar to merge sort. The **height will be log n** and
+since each step(level) is gonna be am O(n) operation, then the overall time complexity for quick sort on average is: `O(n log n)` but the worst case
+is `O(n^2)`.
+
+Q: Is quicksort stable?
+
+A: generally speaking no. There is a way to technically modify it so that it is stable.
+
+Why it's not stable? Let's say: [7(A), 3, 7(B), 4, 5]. We pick 5 as the pivot. After the first iteration, we would have:
+[3, 4, 7(B), 7(A)], the original relative order of equal elements are not preserved. So this algo is not stable.
+
+Time:
+- worst case: O(n^2)
+- average case: O(n * log n)
+
+Space: O(1)
+
+Usually we care about big O or worst case which is O(n ^2) but generally speaking, people consider quicksort to be an efficient 
+algo, O(n log n) on average.
 
 ## 14 BUCKET SORT
