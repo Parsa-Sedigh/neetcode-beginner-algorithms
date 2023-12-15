@@ -1,6 +1,7 @@
 # Implementation of QuickSort
 # s: start
 # e: end
+# Note: Everything is happening in place so there's no need for a merge() step.
 def quickSort(arr, s, e):
     # an individual element(which means e - s + 1 <= 1) is already sorted, so we don't do anything in that case
     if e - s + 1 <= 1:
@@ -21,10 +22,10 @@ def quickSort(arr, s, e):
             left += 1
 
     # Move pivot in-between left & right sides
-    arr[e] = arr[left]
+    arr[e] = arr[left] # move the el pointed by the `left` pointer, to the end of the arr
     arr[left] = pivot
 
-    # Quick sort left side we're taking left - 1 because we know `left` is the index where we put our pivot and we
+    # Quick sort left side. We're taking left - 1 because we know `left` is the index where we put our pivot and we
     # know the pivot is in the perfect spot. So we ignore it for the rest of the algo.
     quickSort(arr, s, left - 1)
 

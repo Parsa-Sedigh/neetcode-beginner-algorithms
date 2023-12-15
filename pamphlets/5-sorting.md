@@ -200,13 +200,69 @@ A: generally speaking no. There is a way to technically modify it so that it is 
 Why it's not stable? Let's say: [7(A), 3, 7(B), 4, 5]. We pick 5 as the pivot. After the first iteration, we would have:
 [3, 4, 7(B), 7(A)], the original relative order of equal elements are not preserved. So this algo is not stable.
 
+![](../img/5-sorting/13-1.png)
+
 Time:
 - worst case: O(n^2)
 - average case: O(n * log n)
 
-Space: O(1)
+- Space: O(1)
 
 Usually we care about big O or worst case which is O(n ^2) but generally speaking, people consider quicksort to be an efficient 
 algo, O(n log n) on average.
 
 ## 14 BUCKET SORT
+It can run in O(n) even in the worst case(note that O() is only used with worst case but we unofficially use it for average case and ... 
+in this course). So it's super efficient. So why did we even bother learning the other algos that are slower by having for example O(n logn)?
+
+Because it's very rare that we're able to use bucket sort. It's sorta a forbidden technique which rarely gets to be used and that's because
+there needs to be certain constraints for the problem(input). We're only allowed to use bucket sort if we're guaranteed that all the values
+that we're sorting, fit within a finite range.
+
+Now typically when you have an array of integers, usually the integer is bounded by a 32-bit integer or 64-bit integer and therefore we would have
+a range like -2^32 all way to 2^32 . So we could say that that's our range but that's a really big range and that doesn't usually qualify for
+bucket sort. We're talking about smaller ranges like 0 - 100 or 0 - 100,000 .
+
+Now for every single value in our range(duplicate values not included), we're gonna create a bucket. Each of the buckets is gonna be a value.
+For example: input is: [2, 1, 2, 0, 0, 2]. Now we count how many of each element we have and the buckets would be: [2, 1, 3] which
+the first element maps to the number of zeros, second maps to number of ones and third maps to number of twos.
+or if the values were [1, 0, 4, 1], the buckets would be: [2, 1, 1].
+
+Q: What is the time complexity of counting these?
+
+A: O(n) .
+
+Every sorting algo we saw, would swap values. But bucket sort does not do that at all. By the time we have counted all the values, we don't even
+need the input values at all, we don't care what these values are anymore. We're just gonna start overwriting them with two nested loops.
+
+The outer loop goes through the counts array. The inner loop's variable is not used! We just want to iterate that many times. In the inner loop,
+we iterate x times and x is the value of the current element. Then overwrite the input array.
+
+### Time and space
+Q: Why is this algo O(n)? Don't we have nested loops?
+
+A: How many times does that nested loop portion actually gonna run. Remember **just because we have two nested loops doesn't mean the time complexity is O(n^2).**
+The **total** number of iterations for the nested loop is `n`(number of elements in the input array).
+
+Space:
+
+The size of the array we create is whatever the range of values of the input arr is. As long as the range is not very large, we assume the range
+is a constant so the memory we're allocating, is O(constant) where constant is the range and we know constant is reduced to O(1).
+
+- Time: O(n)
+- Space: O(1)
+
+Q: Is bucket sort a stable algo
+
+A: No. Because when we overwrite the array, we're not even caring about which 2 came first. We're not even swapping the values, we're just overwriting,
+so it's definitely not stable. So it doesn't preserve the relative order of the equal elements at all.
+But if we wanted to, technically we could make bucket sort a stable algo. Because as we count the elements, we could preserve the order somehow.
+If we make the `counts` var a linked list where the order of equal elements is preserved.
+
+But it's pretty rare that bucket sort is used on anything other than an array.
+
+Most likely you won't be able to run bucket sort on the input that you're given. But if you ever are given an input where bucket sort can be run(values
+are within some specified range), don't ever use any other sorting algos because they're not gonna be as efficient as bucket sort.
+Otherwise, most likely you will end up using either merge sort or quick sort and merge sort is generally more common.
+
+![](../img/5-sorting/14-1.png)

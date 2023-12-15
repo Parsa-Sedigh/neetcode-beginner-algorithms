@@ -6,7 +6,7 @@ def bucketSort(arr):
     for n in arr:
         counts[n] += 1
 
-    # Fill each bucket in the original array
+    # i tells us where to fill each bucket in the original array
     i = 0
     for n in range(len(counts)):
         for j in range(counts[n]):
