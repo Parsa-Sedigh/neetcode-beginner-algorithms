@@ -1,5 +1,5 @@
 def bucketSort(arr):
-    # Assuming arr only contains 0, 1 or 2
+    # We're gonna have a 0 for each possible value in the range. Assuming arr only contains 0, 1 or 2.
     counts = [0, 0, 0]
 
     # Count the quantity of each val in arr

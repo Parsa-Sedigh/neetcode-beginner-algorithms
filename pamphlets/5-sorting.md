@@ -152,6 +152,8 @@ We can use where out second pointer points at currently. Every value before the 
 to put our pivot at.
 
 So now we perform one last swap between where our left pointer(the pointer that marks the end of our small values) and our pivot.
+Why? Because now every value before the l pointer is less than or equal to the pivot, so l is a good spot for pivot(note that pivot should be
+before all the elements of the right half, so l pointer is the ideal place for it).
 
 Just because we partition the array, does not mean the sub-arrays are sorted in themselves. But what is true is that every value on the left subarray
 is less than every value on the right subarray.
@@ -174,7 +176,6 @@ The time complexity **looks** similar to mergesort because we're breaking it up 
 we're always picking the last element and **it might not result in equal halfs**. For a not equal partitions, consider this example:
 [1, 2, 3, 4, 6], after partitioning(which happens in place, no extra memory, we just use pointers), we have: [1, 2, 3, 4] and [6] and ... .
 The visualization is:
-![](1)
 
 The height of the tree is n(the case where we don't have equal halfs). But if we split it into equal halfs, we know the height of it
 is gonna be `log n`. But when we're not splitting into halfs, the height of the tree in the worst case is gonna be `n`.
@@ -203,7 +204,7 @@ Why it's not stable? Let's say: [7(A), 3, 7(B), 4, 5]. We pick 5 as the pivot. A
 ![](../img/5-sorting/13-1.png)
 
 Time:
-- worst case: O(n^2)
+- worst case(if input is already sorted): O(n^2)
 - average case: O(n * log n)
 
 - Space: O(1)

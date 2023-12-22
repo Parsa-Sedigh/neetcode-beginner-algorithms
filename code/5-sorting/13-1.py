@@ -21,8 +21,8 @@ def quickSort(arr, s, e):
 
             left += 1
 
-    # Move pivot in-between left & right sides
-    arr[e] = arr[left] # move the el pointed by the `left` pointer, to the end of the arr
+    # Move pivot in-between left & right sides(Swap the el pointed by l and the pivot)
+    arr[e] = arr[left]
     arr[left] = pivot
 
     # Quick sort left side. We're taking left - 1 because we know `left` is the index where we put our pivot and we
