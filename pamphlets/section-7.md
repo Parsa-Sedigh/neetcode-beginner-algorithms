@@ -21,7 +21,7 @@ Q: Why do we care about having a sorted property with this DS? What does it achi
 
 A: Pretty much exactly the same thing as having a sorted array. With a sorted array, when we need to search for a value, we can do it
 in `log n` time. If the array was not sorted, we would have to look at every individual element, so we would have to search for the
-value that we're looking for in O(n) time, but with sorting, we can do it more efficiently(O(log n)). The exact same thing is true for
+value that we're looking for in O(n) time, **but with sorting, we can do it more efficiently(O(log n))**. The exact same thing is true for
 BSTs. If it didn't have a sorted property, we would have to look at every single node to find the target. But with the sorted property, we don't.
 We can follow the same logic as binary search.
 
@@ -49,7 +49,7 @@ def search(root, target):
     else:
         return True
 ```
-Time complexity: `O(logn)` ,like the binary search. It's only gonna be `logn` if we have a binary tree that's roughly balanced, because our
+Time complexity: `O(log n)` ,like the binary search. It's only gonna be `log n` if we have a binary tree that's roughly balanced, because our
 **assumption** is when we get to a node and we choose either to go left or right, as we do that, **we're eliminating half of the remaining possibilities
 every single time**. But we can only do that if the tree is roughly balanced.
 
@@ -77,8 +77,8 @@ property of that, we know removing from the array in worst case is gonna be O(n)
 to then maybe shift every single value in the array and if we want to add a value, maybe we would have to shift all of the array(like adding
 a value at the beginning of the array, we have to shift all the elements one index forward).
 
-So when it comes to inserting and deleting from an array, it's always gonna be O(n), regardless of it's sorted or not, but this is not true for
-BSTs. With BSTs, inserting and deleting can also be `log(n)` and that's the main benefit of BSTs over sorted arrays.
+**So when it comes to inserting and deleting from an array, it's always gonna be O(n), regardless of it's sorted or not, but this is not true for
+BSTs. With BSTs, inserting and deleting can also be `log(n)` and that's the main benefit of BSTs over sorted arrays.**
 
 ## 19 BST INSERT AND Remove
 
