@@ -51,6 +51,12 @@ Now in this recursive tree in the img, how many times are we gonna have to break
 Now the longest path(worst case) to the leaf(why leaf? To find the level), is `n` where that path is the nth fibonacci that we're trying to compute.
 This means the number of levels is `n` as well, which means the **height** is `n.`
 
+**Note: To find the time and space of recursive:**
+- **time: total number of nodes in decision tree. Because we need to compute all of those function calls in order to get our result.**
+- **space: height of the tree which is max number of nodes that we can travers to get to the leaf.**
+
+In fibonacci, the total number of nodes is 2^n(roughly) and height of the tree is n.
+
 Now to find the time complexity, we need to find out how many function calls(nodes) are in this decision tree?
 
 At each level, roughly, the number of values doubles(we would have n times `* 2`). So time would be: O(2^n).
