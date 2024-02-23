@@ -63,5 +63,56 @@ a zero value.
 ![](../img/2-arrays/3-1.png)
 
 ## 04 DYNAMIC ARRAYS
+If you don't specify the size of the dynamic arr, usually it'll initialize it to some default size, like in java the default size is 10.
+So at the beginning, the size is 10 but length is 0.
+
+With the internal implementation of the dynamic arr, it will maintain a pointer or a variable telling what index is the last element of the arr?
+
+When the dynamic arr becomes full or near full, we allocate a new bigger arr somewhere in memory and copy all the elements into the new arr.
+Now we have enough space to add new elements to the dynamic arr. Now we don't need the original arr anymore, so we de-allocate or free the
+memory of the original arr(we tell the OS that we're not using this arr anymore, you can free it to allocate other values).
+
+Why we doubled the size rather than just increasing it by one?
+
+Since we allocated a brand new arr, we did a O(n) operation because first allocating the memory itself takes `O(n)` where n is the size of the arr,
+but we also had to copy the original values into the new arr. We had to push every single value which is also `O(n)` where n is the **length** of the arr.
+So we don't want to allocate a brand new arr every single time, but also we don't want to allocate a giant arr. So we doubled the size.
+
+Note: 
+- Allocating the space took -> O(n)
+- Then moving the original elements to the new arr took another -> O(n)
+
+When we double the capacity, we get **amortized complexity** which means: yes, it took O(n) to add an element to the arr if we were ran out of capacity,
+but we know it's gonna be infrequent when we run out of space. So we can still say that the amortized time complexity of pushing a value to a
+dynamic arr is going to be O(1). You can think of it as being the average time complexity. Because the vast majority of the time when we push a value
+to the end, it's gonna be O(1). There's actually a mathematical proof for why this is the case. In math, it has to do with power series. In high level,
+the calculation here is always dominated by the last term. This means the last term is always going to be greater than or equal to the sum of
+all previous terms. This is the reason why we're doubling the size rather than just increasing it by one.
+
+The time complexity of dynamic arrs is the same as static arrs.
+
+![](../img/2-arrays/4-1.png)
+
+Note: The second row(pushing and popping) at the end is O(1) even though in some cases we might have to resize the arr, we still assume it's O(1).
+
+Note: There's no amortization for insert middle and remove middle rows. In the worst case they're always O(n) time op.
+
+**Note:** When we pop or remove an element from the middle, we don't delete the memory it occupies. In case of pop, we just update the length(pointer to the
+last el) and in case of remove from the middle, we shift all the elements after that index, to the left by one. 
 
 ## 05 STACKS
+Typically supports 3 ops:
+- push to the end
+- pop from the end
+- read the last element in the stack
+
+![](../img/2-arrays/5-1.png)
+
+We don't need to design a DS from scratch to be able to implement this. The dynamic arrs satisfy all of these requirements(ops).
+So a stack can be implemented using a dynamic arr.
+
+Note: We need to maintain the number of elements that exist in the stack. So we would know exactly where to push or pop the next el.
+
+Stack: LIFO - last in, first out
+
+So we can use a stack to reverse a sequence(even though there are other ways of doing this). There are other use cases for stacks as well.
