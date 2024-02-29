@@ -108,6 +108,8 @@ Typically supports 3 ops:
 
 ![](../img/2-arrays/5-1.png)
 
+You can implement a stack with linked list or arr.
+
 We don't need to design a DS from scratch to be able to implement this. The dynamic arrs satisfy all of these requirements(ops).
 So a stack can be implemented using a dynamic arr.
 
