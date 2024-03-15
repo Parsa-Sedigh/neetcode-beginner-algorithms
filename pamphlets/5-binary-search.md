@@ -20,3 +20,11 @@ O(log n) is much more efficient than O(n).
 - Memory: O(1)
 
 ## 16 SEARCH RANGE
+Variation of binary search algo.
+
+We're given a range of values instead of a sorted array. So we're given a lower bound and an upper bound(low and high parameters), we're not
+given a arr(or a sorted arr).
+
+We're trying to guess the number that satisfies a condition in the given range.
+
+`T: O(log(n))`. In search arr type of binary search, n is the length of the arr. But in this case, n is the length of the range that we're given. 
