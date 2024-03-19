@@ -1,3 +1,5 @@
+# Section 06 BINARY SEARCH
+
 ## 15 SEARCH ARRAY
 Very related to sorting. Because binary search can only run on an input that is already in some type of sorted order.
 
