@@ -124,5 +124,6 @@ So to be given some values that are not sorted and to sort them using a BST and 
 similar to some other sorting algos like merge sort and quick sort.
 
 ## 21 Breadth-First Search
+Level order traversal.
 
 ## 22 BST Sets and Maps
