@@ -105,9 +105,23 @@ because it's gonna be the node with 1 or 0 children.
 
 So the worst case is we traverse the height twice: 2 * O(log(n))
 
-So this was the benefit of BSTs over sorted arrs, we can remove and insert in O(log(n)) instead of O(n).
+So this was the benefit of BSTs over sorted arrs, we can insert and remove in O(log(n)) instead of O(n).
 
 ## 20 Depth-First Search
+Inorder: For every node, we went left as far as we can, process it, then we process the parent, then we go right.
+
+Building a BST: We have to insert every value in the BST and an insertion is O(log(n)) for a balanced tree and for n values: O(n * log(n)).
+
+`Time complexity of building the BST: O(n * log(n))`
+
+Building an array out of BST:
+- First we have to build the BST -> O(n * log(n))
+- traverse the BST to build the output arr in sorted order: O(n) . We do this by using inorder traversal which gives us the nodes in sorted order.
+
+So the time complexity is: O(nlog(n) + n). Any constants are ignored. So: `O(n * log(n))`
+
+So to be given some values that are not sorted and to sort them using a BST and create a sorted arr, it takes O(n log(n)) which is 
+similar to some other sorting algos like merge sort and quick sort.
 
 ## 21 Breadth-First Search
 
