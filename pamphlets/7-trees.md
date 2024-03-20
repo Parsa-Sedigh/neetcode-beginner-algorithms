@@ -60,13 +60,55 @@ A: The downside of sorted arrs is when we wanna add or remove values to the arr 
 in worst case is O(n) because even if we can find the val really quickly(O(log(n))), we still have to maybe shift every single el to the left
 and if we wanna add a val, in worst case, we have to shift all of elements by one to the right.
 
-**So when it comes to isnerting and deleting from an arr, it's gonna be O(n) in worst case **whether it's sorted or not**. But that's not true
+**So when it comes to inserting and deleting from an arr, it's gonna be O(n) in worst case **whether it's sorted or not**. But that's not true
 for BSTs. With BSTs, inserting and deleting can also be O(log(n)).** And that's the main benefit of BSTs.
 
-19 BST INSERT AND Remove
+**The main benefit of BST over sorted arrs is that we can insert and remove in O(log(n)) instead of O(n) (assuming the tree is roughly balanced).**
+Inserting is gonna traverse the height of the tree, when tree is roughly balanced, it's gonna traverse log(n) nodes.
 
-20 Depth-First Search
+When tree is roughly balanced, the height of the tree is roughly log(n).
 
-21 Breadth-First Search
+Note: To find a node in BST, we don't have to go through every node because we know we have the sorted property of BST.
+So ideally, we would eliminate half of the remaining possibilities at every level of the BST.
 
-22 BST Sets and Maps
+## 19 BST INSERT AND Remove
+Note: As we go in one direction, we're essentially traversing a linked list.
+
+In insert and remove, we're expected to insert or remove the node and then return the new subtree to the parent.
+
+### remove
+Break it to two cases:
+1. node that we wanna remove, either has 0 or 1 child
+2. node that we wanna remove, has 2 children
+
+There are two approaches for solving case 2:
+1. It's best to replace the node we wanna remove with a leaf node of it's right subtree but which leaf node?
+Should we pick the largest val in the leaf level of right subtree or the smallest value? We have to choose 
+the smallest val. If we do this, it satisfies the sorted property. Because all the remaining nodes on the right subtree are
+greater than the new node that we replaced(since we picked the smallest val in the right subtree). We will use the `minValueNode()` func.
+2. We can choose the largest val in the left subtree of the node that we wanna remove and replace it with the node
+we wanna remove. Why this works? Since the new val that we picked is less than the node we wanted to remove, so it's also gonna be less than
+the right subtree and since the node we chose is largest in the left subtree of the node we wanted to remove, it's gonna be
+greater than all of the left subtree, so it's the right choice to keep the sorted property. But we will use the first approach.
+
+![](../img/7-trees/19-1.png)
+
+The BST remove() func in the worst case:
+1. find the node to remove
+2. find the minimum node in the right subtree. In worst case for this, we could traverse the whole height of the tree which is log(n) if balanced.
+3. replace the found minimum with the node we wanna remove
+4. remove the found minimum. We could traverse the height of the tree **again**. Note that the minimum could have at most 1 right node(assuming no
+duplicates in the tree, but if there was a duplicate, we still would get the child).
+
+So the second time we called remove() (on a different node that we were originally removing), it's gonna be the last time we remove a node, 
+because it's gonna be the node with 1 or 0 children.
+
+So the worst case is we traverse the height twice: 2 * O(log(n))
+
+So this was the benefit of BSTs over sorted arrs, we can remove and insert in O(log(n)) instead of O(n).
+
+## 20 Depth-First Search
+
+## 21 Breadth-First Search
+
+## 22 BST Sets and Maps
