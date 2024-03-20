@@ -127,3 +127,17 @@ similar to some other sorting algos like merge sort and quick sort.
 Level order traversal.
 
 ## 22 BST Sets and Maps
+### Set
+Sets and maps are commonly implemented using BSTs and also with hashsets and hashmaps.
+
+Set is like an arr but the word set implies that there's some other underlying DS being used not an arr. One implementation is BST.
+
+The advantage of having a set implemented with a BST rather than an arr is we can search, insert and remove in `O(log n)`.
+
+### Map
+
+
+When implemented with BSTs, these are called ordered set or a tree set and ordered maps and tree maps.
+![](../img/7-trees/22-1.png)
+
+Java and C++ have native tree maps, but py and js don't have them.
