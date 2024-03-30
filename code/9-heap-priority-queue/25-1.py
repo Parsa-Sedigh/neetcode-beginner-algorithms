@@ -4,6 +4,8 @@ class Heap:
 		# So this is essentially an empty heap.
 		self.heap = [0]
 
+	# T: O(h) and we know in heaps, the binary tree is always complete, so it can never be unbalanced => O(log(n))
+	# M: O(1)
 	def push(self, val):
 		# Put the value at the last index of array(heap is implemented as an array).
 		self.heap.append(val)
@@ -22,6 +24,8 @@ class Heap:
 			# potentially(in the next iteration) compare the new node in it's parent position to it's new parent and potentially swap it.
 			i = i // 2
 
+	# T: O(log(n))
+	# M: O(1)
 	def pop(self):
 		# If the heap is empty(meaning there is only one element which is the zeroth index), there's nothing to pop.
 		if len(self.heap) == 1:
@@ -74,6 +78,8 @@ class Heap:
 
 		return res
 
+	# T: O(n) where n is number of elms in the arr
+	# M: O(1)
 	def heapify(self, arr):
 		# 0-th position is moved to the end
 		arr.append(arr[0])
@@ -110,5 +116,3 @@ class Heap:
 			# Remember that we're going in reverse order(backwards) in our array and for each of these, we're gonna percolate them down if
 			# it's needed(using a while loop)
 			cur -= 1
-
-
