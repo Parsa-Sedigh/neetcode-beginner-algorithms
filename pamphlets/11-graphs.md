@@ -279,6 +279,16 @@ The space would be the same, because that's the max size that our visit hashset 
 
 `Time = Space : O(n * m)`
 
+**Note:** If the question didn't have a minium or ... constraint, we could be going over all of the elements in 
+the current q in one iteration of the while loop, but it didn't matter, because eventually we will go over all of them.
+If this question had said: get the minimum time or minimum or ..., we had to go all of the elements of the q(snapshot manner) in one iteration of while loop.
+In other words, we had to do multi-source BFS, by having another loop inside the while loop by saying:
+`for i in range(len(q)):`
+
+In `31-1.py`, we actually have the time or path constraint, it wants us to get the shortest path. We're incrementing length after
+each iteration of for loop inside while loop. So it actually mattered to have a for loop for all of the elements of `q` inside
+the while loop so we actually get the shortest path. In other words, we have to write a multi-source BFS.
+
 ## 32 Adjacency List
 These are much simpler to run an algo on, rather than on a matrix.
 
@@ -318,6 +328,10 @@ than the number of vertices, because we can only visit each vertex once along a 
 height of our decision tree. Now for each vertex, how many choices could we have? In the worst case, it would be every vertex is connected
 to every other vertex, so that would mean v choices. Let's say N is the average number of edges that each node has. This is slightly more common
 way of talking about it.
+
+Note: When we have recursion, to find the time and space complexities, you need to draw the decision tree. Now the time complexity is total number
+nodes in the tree. The number of nodes(in worst case), is(without constants): `2^<height>`. 
+For example, in a binary tree, number of paths or edges for each node is 2, so the time complexity is: 2^n
 
 The height of the decision tree is `v`
 
