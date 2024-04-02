@@ -4,7 +4,10 @@ from collections import deque
 def bfs(grid):
     ROWS, COLS = len(grid), len(grid[0])
 
-    # We have a visit hashset just like with DFS
+    # We have a visit hashset just like with DFS.
+    # we need sort of a marker to mark the cells that we already visited so that we don't stuck in an infinite loop.
+    # This hashset is for this task.
+    # This visit hashset helps us with time complexity as well, because we won't visit the cells that we've already visited.
     visit = set()
 
     # We have a queue like BFS on tree. The queue is gonna tell us the current level that we're at
@@ -15,7 +18,10 @@ def bfs(grid):
     length = 0
 
     while queue:
-        # Here, we take a snapshot of the length of the queue
+        # Here, we take a snapshot of the length of the queue.
+        # Note: At each time(layer of movement), we wanna pop all of the cells in the queue. We have to have this for loop.
+        # Just note that range() takes a snapshot, so it won't evaluate the new queue as we add to it in the for loop. It would
+        # only take a snapshot.
         for i in range(len(queue)):
             r, c = queue.popleft()
 
