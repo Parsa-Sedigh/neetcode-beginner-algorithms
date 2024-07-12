@@ -28,7 +28,9 @@ class Queue:
         if not self.left:
             return None
 
-        # Remove left node and return value. Just move the left pointer forward
+        # Remove left node and return value. Just move the left pointer forward. Since there will be no pointers
+        # pointing to the node we wanna remove, it will be GCed. Therefore, just moving the left pointer forward is
+        # sufficient.
         val = self.left.val
         self.left = self.left.next
 

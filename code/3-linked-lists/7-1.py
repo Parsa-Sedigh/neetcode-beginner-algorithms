@@ -4,8 +4,9 @@ class ListNode:
         self.next = None
         self.prev = None
 
+
 # Implementation for Doubly Linked List
-class LinkedList:
+class DoublyLinkedList:
     def __init__(self):
         # Init the list with 'dummy' head and tail nodes which makes
         # edge cases for insert & remove easier.
@@ -19,14 +20,19 @@ class LinkedList:
         newNode.prev = self.head
         newNode.next = self.head.next
 
+        # the next node after head, should point to the newNode
         self.head.next.prev = newNode
         self.head.next = newNode
 
     def insertEnd(self, val):
         newNode = ListNode(val)
+
+        # self.tail is a dummy node and should always remain the last node in the linked list. Therefore, we should point the
+        # `next` field of newNode to self.tail .
         newNode.next = self.tail
         newNode.prev = self.tail.prev
 
+        # this line sets the next field of the previous node of newNode.
         self.tail.prev.next = newNode
         self.tail.prev = newNode
 

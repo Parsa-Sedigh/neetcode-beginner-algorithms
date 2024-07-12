@@ -2,6 +2,8 @@
 # Length is the number of 'real' values in arr, and capacity
 # is the size (aka memory allocated for the fixed size array).
 def insertEnd(arr, n, length, capacity):
+    # This should be < not <=. Because we wanna add another element and if len and cap are equal, the new el would
+    # go out of bound
     if length < capacity:
         arr[length] = n
 

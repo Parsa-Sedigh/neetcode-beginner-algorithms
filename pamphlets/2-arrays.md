@@ -74,7 +74,7 @@ memory of the original arr(we tell the OS that we're not using this arr anymore,
 
 Why we doubled the size rather than just increasing it by one?
 
-Since we allocated a brand new arr, we did a O(n) operation because first allocating the memory itself takes `O(n)` where n is the size of the arr,
+Since we allocated a brand new arr, we did a O(n) operation because **first allocating the memory itself takes `O(n)`** where n is the size of the arr,
 but we also had to copy the original values into the new arr. We had to push every single value which is also `O(n)` where n is the **length** of the arr.
 So we don't want to allocate a brand new arr every single time, but also we don't want to allocate a giant arr. So we doubled the size.
 
