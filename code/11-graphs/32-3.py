@@ -1,7 +1,6 @@
-# Shortest path from node to target
 from collections import deque
 
-
+# Shortest path from node to target
 def bfs(node, target, adjList):
     length = 0
     visit = set()

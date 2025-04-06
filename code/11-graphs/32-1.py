@@ -28,4 +28,7 @@ for src, dst in edges:
     if dst not in adjList:
         adjList[dst] = []
 
+    # assuming that the graph is DIRECTED, just add dst to the neighbors list of src.
+    # Note: If graph is undirected, we should add src to the neighbors list of dst as well.
+    # So we would also do: adjList[dst].append(src)
     adjList[src].append(dst)

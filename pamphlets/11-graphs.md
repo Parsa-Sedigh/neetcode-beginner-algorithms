@@ -5,13 +5,12 @@ Common ways of representing graphs:
 3. adjacency list
 
 Linked lists are a form of graphs. They're a subset of graphs and another subset of graphs are trees whether it's binary trees or other
-kinds of trees.
+kinds of trees. So **linked lists and trees are subsets of graphs. Trees and linked lists are directed graphs.**
 
 A graph is made up of nodes and possibly some pointers connecting the nodes together.
 
-Nodes = vertices
-
-pointers = edges
+- Nodes = vertices 
+- pointers = edges
 
 When we talked about binary trees and BSTs, we mentioned that they never have cycles.
 
@@ -21,7 +20,7 @@ Because what we're saying is from every single node aka vertex, we could have a 
 
 Note: We can have an edge going in on itself. So a node can be pointing to itself.
 
-Note: For every single node, we could have `V` edges. Where v is total number of nodes.
+**Note: For every single node, we could have `V` edges. Where v is total number of nodes. V - 1 edges to other nodes and 1 edge to itself.**
 
 Note: Technically we can have duplicate edges(like multiple edge from A to B), but usually we don't consider that where it comes to graphs.
 ![](../img/11-graphs/29-1.png)
@@ -34,7 +33,7 @@ When every single pointer(edge) has a direction, this is referred to as a direct
 Undirected graph: For drawing them, we can use `<--->` or `---`, these two indicate that that edge is undirected, meaning you can go
 in either directions, you can go from node1 to node2 or node2 to node1.
 
-It's most common to represent a graph, using adjacency list.
+It's most common to represent a graph, using **adjacency list**.
 
 ---
 ### Matrix
@@ -49,7 +48,7 @@ less common.
 How does the matrix in the img represent a graph?
 
 You could say that free spaces(zeroes) are nodes and the 1s are gonna blocked out. Now where are the edges? I said we can move left,
-right, up and down, so the edges are the green lines. The edges are undirected.
+right, up and down, so **the edges are the green lines**. The edges are undirected.
 
 Note: These edges exist because of the rules that we defined. I said we can move right, left, top and bottom. Maybe we could've defined
 we could move diagonally and other kinds of moves.
@@ -65,22 +64,22 @@ We'll talk about this is less common than the other two.
 
 In this case, the zeroes are not nodes anymore.
 
-In adjacency matrix, the dimensions represent the nodes. Typically it's a square matrix. Let's say the size of matrix is v * v where
+In adjacency matrix, the dimensions represent the nodes. **Typically it's a square matrix**. Let's say the size of matrix is v * v where
 v represents the number of vertices. That's OFC why it has to be a square, both the number of rows and cols are v, hence becoming a square.
 
-In adjacency matrix, when there is an edge, it's a directed edge, so in adjMatrix[v1][v2] = 1, it means there's a directed edge from v1 to v2.
+**In adjacency matrix, when there is an edge, it's a directed edge, so in adjMatrix[v1][v2] = 1, it means there's a directed edge from v1 to v2.
 Now if we wanna know if there is an edge from v2 to v1? We look at the adjMatrix[v2][v1]. The order of indexes represent the direction of the
-edge.
+edge.**
 ![](../img/11-graphs/29-3.png)
 
-Note: What's the maximum number of edges we could have with an adjacency matrix?
+**Q: What's the maximum number of edges we could have with an adjacency matrix?**
 
-Maximum E = V^2
+**Maximum E = V^2**
 
 Q: Why is it rare to use an adjacency matrix?
 
-A: No matter how many edges we actually have, to represent a graph we're using an entire matrix. That means the space complexity is `O(v^2)`
-where v is number of nodes. We could represent the exact same info of graph, in `O(V + E)` which in the example of img, since V = E, it
+A: **No matter how many edges we actually have, to represent a graph we're using an entire matrix. That means the space complexity is `O(v^2)`**
+where v is number of nodes. We could represent the exact same info of graph, in `O(V + E)` using adjacency list which in the example of img, since V = E, it
 would be reduced to O(V + V) => O(V). So why would we use a matrix which takes up extra space and doesn't provide additional info?
 That's why it leads us to next way of representing a graph, adjacency list.
 
@@ -91,16 +90,16 @@ It's similar to linked lists and trees.
 
 Note: The value of a GraphNode could be anything(object, integer, ...).
 
-In linked lists, we could either had a next pointer or prev pointer. It BSTs, we could have a left or right pointer. But with generic graphs,
-we could have any number of pointers. We represent them with `neighbours` field of a GraphNode. In the context of social network,
+**In linked lists, we could either have a next pointer or prev pointer. In BSTs, we could have a left or right pointer. But with generic graphs,
+we could have any number of pointers.** We represent them with `neighbours` field of a GraphNode. In the context of social network,
 we could name this field `following`. Instead of predefining the number of pointers we can have for a GraphNode, we use a list.
 What is the type of elements in neighbours list? It's gonna be an array of `GraphNode`s.
 For example for node 1, it's neighbours are the node 0 and node 1 itself. And the neighbours of node 3, is node 1.
 
 The neighbours list refers to which nodes is this node pointing **at**?
 
-This is a bit more space efficient than the adjacency matrix. Because we only contain pointers for nodes that actually exist. We only
-have space for edges that actually exist.
+This is a bit more space efficient than the adjacency matrix. Because we only contain pointers for nodes that actually exist. **We only
+have space for edges that actually exist.**
 
 If we had undirected edges, both nodes would have the other node in it's neighbours list.
 
@@ -173,8 +172,8 @@ The reason we're using a hashset, is because it's easier to code, to just add a 
 is `O(1)`. But alternatively, you could use a two-dimensional array with the same size of the matrix(`grid`) as well for `visit` as well.
 Because basically what we're gonna do with `visit`, is to mark the positions that we've already visited.
 
-Note: If you're allowed to modify the `grid`, you could also as you visit the position, mark it as a 1 to indicate that it's already been
-visited. But it's not always safe to assume you can modify the input `grid`, so we ignore this for now.
+**Note: If you're allowed to modify the `grid`, you could also as you visit the position, mark it as a 1 to indicate that it's already been
+visited.** But it's not always safe to assume you can modify the input `grid`, so we ignore this for now.
 
 Q: How the `count`s are gonna get returned?
 
@@ -252,7 +251,7 @@ We go layer by layer.
 
 What type of question would this algo apply to?
 
-By far the most common is the "shortest path" algo. Like shortest path from top left to bottom right and then return that.
+**By far the most common is the "shortest path" algo. Like shortest path from top left to bottom right and then return that.**
 
 The most efficient way is the BFS algo. We could also use DFS if we wanted to. Which means checking every single possible way that we can
 reach the destination and then find the length of the shortest one, but that's a brute force approach. BFS is actually more efficient.

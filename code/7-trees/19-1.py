@@ -1,8 +1,12 @@
+from typing import Optional
+
+
 class TreeNode:
     def __init__(self, val):
         self.val = val
         self.left = None
         self.right = None
+
 
 # T: O(h) - usually h is log(n), So O(log(n)) if we have a balanced tree.
 
@@ -27,8 +31,9 @@ def insert(root, val):
 
     return root
 
+
 # Return the minimum value node of the BST.
-def minValueNode(root):
+def minValueNode(root: Optional[TreeNode]) -> Optional[TreeNode]:
     # We don't have to create a new var. We can use the func param itself.
     curr = root
 
@@ -40,8 +45,10 @@ def minValueNode(root):
 
     return curr
 
+
 # Remove a node and return the root of the BST.
-# T: O(log(n))
+# T: O(h)
+# M: O(h)
 def remove(root, val):
     if not root:
         return None
@@ -50,22 +57,29 @@ def remove(root, val):
         root.right = remove(root.right, val)
     elif val < root.val:
         root.left = remove(root.left, val)
+
+    # val is equal to the root.val , so this is the node we wanna remove.
     else:
         if not root.left:
             return root.right
-        elif not root.right:
+
+        if not root.right:
             return root.left
-        else:
-            minNode = minValueNode(root.right)
-            root.val = minNode.val
 
-            # Currently, we have two copies of whatever node the minValueNode() returned, so we have to remove it. So
-            # call remove() again on the right subtree. The good thing here is: Since we found the minimum val from
-            # the right subtree, we know that node has at most one child, but it won't have two children(since we get
-            # the minimum value and we know BST doesn't have duplicates). So the second time we call remove() which
-            # is what we're gonna do in the next line, it's gonna be the simple case(0 or 1 child case) and in this
-            # case, it's gonna have at most 1 RIGHT child(since we grabbed the minimum val which would be in the left).
-            # Since it would be the simple case of remove(), we won't have anymore recursive calls in the next remove().
-            root.right = remove(root.right, minNode.val)
+        minNode = minValueNode(root.right)
 
+        # Only mutate the `val` not the whole root obj. Because otherwise, the root will point to that smallest
+        # node in it's right subtree which we absolutely don't want to.
+        root.val = minNode.val
+
+        # Currently, we have two copies of whatever node the minValueNode() returned, so we have to remove it. So
+        # call remove() again on the right subtree. The good thing here is: Since we found the minimum val from
+        # the right subtree, we know that node has at most one child, but it won't have two children(since we get
+        # the minimum value and we know BST doesn't have duplicates). So the second time we call remove() which
+        # is what we're gonna do in the next line, it's gonna be the simple case(0 or 1 child case) and in this
+        # case, it's gonna have at most 1 RIGHT child(since we grabbed the minimum val which would be in the left).
+        # Since it would be the simple case of remove(), we won't have anymore recursive calls in the next remove().
+        root.right = remove(root.right, minNode.val)
+
+    # When we go upwards in the decision tree, return the root
     return root

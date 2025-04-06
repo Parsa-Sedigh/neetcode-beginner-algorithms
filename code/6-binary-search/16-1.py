@@ -4,6 +4,8 @@ def binarySearch(low, high):
     while low <= high:
         mid = (low + high) // 2
 
+        # returned 1, so mid is too big. Since the we're in a sorted situation, the target should be less than mid.
+        # So move high to an earlier place(mid - 1).
         if isCorrect(mid) > 0:
             high = mid - 1
         elif isCorrect(mid) < 0:
@@ -12,6 +14,7 @@ def binarySearch(low, high):
             return mid
 
         return -1
+
 
 # Returns 1 if n is too big, -1 if too small, 0 if correct
 def isCorrect(n):

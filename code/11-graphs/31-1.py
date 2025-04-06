@@ -1,5 +1,8 @@
 from collections import deque
 
+
+# T: O(r * c)
+# M: O(r * c)
 # Shortest path from top left to bottom right
 def bfs(grid):
     ROWS, COLS = len(grid), len(grid[0])
@@ -42,8 +45,8 @@ def bfs(grid):
                 # One out of bounds is: (min(r + dr, c + dc) < 0 and another one is r + dr == ROWS or c + dc == COLS
                 # Note: We could have this conditional 4 times for all 4 directions. But another way to do it is to take all 4 of the neighbors.
                 if (min(r + dr, c + dc) < 0 or
-                    r + dr == ROWS or c + dc == COLS or
-                    (r + dr, c + dc) in visit or grid[r + dr][c + dc] == 1):
+                        r + dr == ROWS or c + dc == COLS or
+                        (r + dr, c + dc) in visit or grid[r + dr][c + dc] == 1):
                     continue
 
                 queue.append((r + dr, c + dc))
@@ -59,5 +62,6 @@ def bfs(grid):
                 visit.add((r + dr, c + dc))
 
         length += 1
+
 
 print(bfs(grid))

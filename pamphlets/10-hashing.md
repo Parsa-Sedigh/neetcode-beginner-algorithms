@@ -4,7 +4,11 @@
 ### hash sets/maps
 In hashset we only have a set of keys, but in hashmap, each key is gonna map to some value.
 
+Unlike a list, there can't be any duplicates in hash sets / maps.
+
 The key is used to sort the binary search tree and is used to access values from hashset and hashmap.
+
+Note: We can remove values in O(1).
 
 ### Tree map vs hashmap
 When we have a map, we wanna:
@@ -18,12 +22,12 @@ Also in treemaps(we know they're ordered), we can iterate through them in sorted
 
 Note: In a hashmap, when we say it's insert op is O(1), we're not telling the worst case! Even though we're writing it as big O which means
 worst case. **When we say hashmaps have O(1) for these three operations, it's actually the average case time complexity.** But the vast majority
-of the time, people still assume that it is the worst case time complexity, so we right it as O(1).
+of the time, people still assume that it is the worst case time complexity, so we write it as O(1).
 
-So the three first ops for hashmaps have average case of O(1). But in worst case for hashmaps, these three ops could be O(n) depending on how
-you implement the hashmap.
+**So the three first ops for hashmaps have average case of O(1). But in worst case for hashmaps, these three ops could be O(n) depending on how
+you implement the hashmap.**
 
-Now the downside of hashmaps is that they don't maintain any ordering. As a result, if you wanna iterate through all the keys of the hashmap
+Now **the downside of hashmaps is that they don't maintain any ordering.** As a result, if you wanna iterate through all the keys of the hashmap
 in a specific order, you can't do it in O(n), you have to take all the keys and then sort them which depending on what sorting algo you use,
 it typically would be O(n log n) .
 
@@ -59,10 +63,10 @@ When we wanna get a value of a key, for example key is "Alice", we would use our
 mod that by the size of the underlying arr, then we get for example 1 which is the index of the arr that at that index, we have a key-value
 pair of `Alice: NYC`.
 
-But there are a few problems. Like the collision problem which happens with all the hashing algos. It's sth you can't entirely avoid.
+But there are a few problems. Like **the collision problem which happens with all the hashing algos.** It's sth you can't entirely avoid.
 There are ways that we can use to **1-minimize collisions and 2-workaround them**. But we can't entirely get rid of them. Hashing collisions always happen.
 
-**Collision:** The index of the underlying arr that we wanna insert sth is already taken.
+**Collision:** The index of the underlying arr that we wanna insert sth, is already taken.
 
 First let's see how we can minimize collisions?
 
@@ -102,7 +106,7 @@ run the `get` op of hashmap and we find out we need to go to an index, we have t
 This linked list approach is commonly referred to as **chaining**
 2. Another approach is **open addressing**. It's called that because we kinda loosely define the index that a key should go. For example, even though
 we computed the index 1 for a key, we don't have to put it at that index in the underlying arr because it's already occupied. In this case,
-we try the next index. Now in this approach, when we run get op on this key which was put at index 2 for example, first as always we compute the hash,
+we try the next index. Now in this approach, when we run `get` op on this key which was put at index 2 for example, first as always we compute the hash,
 we would again get 1, we would see well at that index, we don't have the key we wanna get. So if that key exists, maybe it's at the next index, in other
 words, maybe we open-addressed it. So try the next index. Then we would find it. Another example is we wanna `get` a key that actually doesn't exist in
 the hashmap, in this case, we go to an index, it's not there, we say: maybe we open-addressed it, so try next index, it's again not there and ... we go
@@ -114,6 +118,10 @@ Note: This is a naive way of doing open-addressing, because we're just trying th
 is we're gonna **cluster** the hashmap potentially. If we have a big hashmap and we get a lot of collisions, all the keys are gonna be stored
 close to each other. So there are better ways of doing open-addressing. Like instead of just going one index further to insert(in case of collision),
 maybe we go to index^2.
+
+Ways of working around collisions:
+- chaining
+- open addressing
 
 There are more optimal ways of handling that.
 

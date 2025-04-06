@@ -41,13 +41,13 @@ so removing would be O(n) .
 - Insert at end: O(1)
 - remove at end: O(1)
 
-The above, satisfies the requirements of a stack DS. That means that stacks can also be implemented with linked lists,
+**The above, satisfies the requirements of a stack DS. That means that stacks can also be implemented with linked lists,
 just like they can be with arrays.
 But it's lot less common to implement stacks using linked lists. Because with dynamic arrs, we can also access any
 arbitrary element of the arr
 in O(1). This is a downside of linked lists(whether singly or doubly). Because we can't access arbitrary nodes in linked
 lists.
-That means to access a random element of linked list -> O(n)
+That means to access a random element of linked list -> O(n)**
 
 **So it's better to use a dynamic arr instead of linked list to create stack.**
 
@@ -75,8 +75,7 @@ is O(n)) in linked lists(most of the time those ops in linked lists are O(n) not
 - dequeue: Removing from the start of the queue(that's why queue is FIFO)
 
 We wanna add to the end of the queue and remove from beginning in O(1). We know we can't do that with arrs, because if
-you remove from beginning of
-the arr, then we have to take all other els and shift them to the left by one, that's O(n). But with linked lists, we
+you remove from beginning of the arr, then we have to take all other els and shift them to the left by one, that's O(n). But with linked lists, we
 can achieve this in O(1).
 
 **Using linked lists to implement queues**:

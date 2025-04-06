@@ -1,6 +1,8 @@
 # Implementation of MergeSort
 # s: start
 # e: end
+# T: O(n * log(n))
+# M: O(n)
 def mergeSort(arr, s, e):
     # e - s + 1 is the length of the subarray
     if e - s + 1 <= 1:
@@ -19,6 +21,7 @@ def mergeSort(arr, s, e):
     merge(arr, s, m, e)
 
     return arr
+
 
 # Merge in-place
 def merge(arr, s, m, e):

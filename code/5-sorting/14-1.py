@@ -8,6 +8,8 @@ def bucketSort(arr):
 
     # i tells us where to fill each bucket in the original array
     i = 0
+
+    # n represents the actual value
     for n in range(len(counts)):
         for j in range(counts[n]):
             arr[i] = n

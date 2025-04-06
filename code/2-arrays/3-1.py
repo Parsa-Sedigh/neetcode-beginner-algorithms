@@ -17,6 +17,12 @@ def removeEnd(arr, length):
 
 # Insert n into index i after shifting elements to the right.
 # Assuming i is a valid index and arr is not full.
+
+# Note: We can't start from i+1 and move elements to the right, because that would overwrite the els. We need to start from the end
+# and move backwards.
+
+# Note: We wanna start from the last el(at length - 1) until the curr el at index i and move them one index forward.
+# The second arg of range() is EXCLUSIVE. So the last element that we move forward is at i - 1.
 def insertMiddle(arr, i, n, length):
     # Shift to the right starting from the end to i.
     for index in range(length - 1, i - 1, -1):

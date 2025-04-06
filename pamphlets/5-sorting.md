@@ -1,10 +1,13 @@
-## 11 INSERTION SORT
-
 Sorting are usually applied to arrays but you can apply it to other DSs including linked lists and ... .
 
+
+## 11 INSERTION SORT
 We consider any array of one element, sorted. So first element is sorted, the next sub-problem is to sort the first two
 values.
 Then first three values and ... .
+
+So in this algo, the first val is sorted, then the first two vals is sorted, then first three vals is sorted and ... .
+The way this algo works, is for each val, we're gonna **inserting** it in the correct order into the sorted portion of the list.
 
 Since we're doing it with sub-problems, we could solve this using recursion, but it's not useful in this case. We're
 gonna solve it with
@@ -28,8 +31,12 @@ As long as we have a way to compare two values like characters(like sorting base
 them. Maybe sorting words as well,
 based on their first character.
 
+---
+
 Time Complexity:
+
 Best Case: O(n)
+
 This occurs when the array is already sorted. The algorithm only needs to make one comparison per element.
 
 Average Case: O(n^2)
@@ -143,7 +150,7 @@ We can take the log of both sides of the equation. We use log base 2 of n and by
 
 So how many times we can divide n by 2 until n = 1?
 
-The log base 2 of n is how many times we can divide it by 2 until it's equal to 1.
+**The log base 2 of n is how many times we can divide it by 2 until it's equal to 1.**
 
 Watch the video from 13:30 to 16:00 to learn the math behind log base 2 of n.
 
@@ -156,8 +163,8 @@ recursion.
 We have log(n) number of levels and for each level, we're doing O(n) time complexity, so the overall time complexity
 is: `O(n log(n))`.
 
-Note: At each level, we have n nodes. So total number of nodes which is the time complexity is number of nodes at
-each level multiplied by number of levels: T: O(n * log(n)). In other words: n + n + ... + n (log(n) times).
+**Note: At each level, we have n nodes. So total number of nodes which is the time complexity is number of nodes at
+each level multiplied by number of levels: T: O(n * log(n)). In other words: n + n + ... + n (log(n) times).**
 
 `Memory: O(n)` because at any point we have to create two temporary arrays to build the original array.
 

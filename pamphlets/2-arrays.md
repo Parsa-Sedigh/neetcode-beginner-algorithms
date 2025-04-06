@@ -49,6 +49,8 @@ we have to shift all of the elements to the left by one index.
 Note: Removing an element from a static arr, doesn't change the allocated memory for that arr. The removed elements would go to the end of the arr and have
 a zero value.
 
+---
+
 - Read or write(actually overwriting) at any index -> O(1)
 - insert or remove at the end -> O(1).
     - note: In inserting at the end, we have assumed we have at least one space left at the end / in removing from the end, we have assumed we have
@@ -61,6 +63,8 @@ a zero value.
     - worst case is removing the first element which we might have to shift every value of the arr to the left
 
 ![](../img/2-arrays/3-1.png)
+
+---
 
 ## 04 DYNAMIC ARRAYS
 If you don't specify the size of the dynamic arr, usually it'll initialize it to some default size, like in java the default size is 10.
@@ -108,7 +112,7 @@ Typically supports 3 ops:
 
 ![](../img/2-arrays/5-1.png)
 
-You can implement a stack with linked list or arr.
+**You can implement a stack with linked list or arr.**
 
 We don't need to design a DS from scratch to be able to implement this. The dynamic arrs satisfy all of these requirements(ops).
 So a stack can be implemented using a dynamic arr.
@@ -117,4 +121,4 @@ Note: We need to maintain the number of elements that exist in the stack. So we 
 
 Stack: LIFO - last in, first out
 
-So we can use a stack to reverse a sequence(even though there are other ways of doing this). There are other use cases for stacks as well.
+So **we can use a stack to reverse a sequence**(even though there are other ways of doing this). There are other use cases for stacks as well.
