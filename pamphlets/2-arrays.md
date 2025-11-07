@@ -43,8 +43,9 @@ the value there with a zero value. It's still in memory though.
 In the worst case, if you're inserting a value at any arbitrary position of the arr, we might have to shift every value(worst case). We might have to
 shift n values -> O(n). Where n is the number of values(not the size of the array). The exact same thing is true if we're removing a value at any
 arbitrary index. When we say removing in this case, we're not saying replacing it with a 0 at that index, instead, we're saying we wanna pretend that
-this element doesn't exist, we wanna move it to the end of the arr. So in the worst case which is removing the first element of the arr,
-we have to shift all of the elements to the left by one index.
+this element doesn't exist, we wanna move it to the end of the arr. 
+
+**So the worst case of deleting in arr, which is removing the first element of the arr, we have to shift all of the elements to the left by one index.**
 
 Note: Removing an element from a static arr, doesn't change the allocated memory for that arr. The removed elements would go to the end of the arr and have
 a zero value.

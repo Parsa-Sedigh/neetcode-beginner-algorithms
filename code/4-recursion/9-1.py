@@ -12,6 +12,11 @@ def factorial(n):
 # non recursive solution
 # Time: O(n)
 # Space: O(1)
+
+# NOTE: This approach doesn't work for fibo iterative. Because:
+# Factorial: Each term contributes itself → multiply down
+# Fibonacci: Each term depends on prior two → must build up
+# So when solving fibo, we need to start from the beginning and build up,
 def factorialIterative(n):
     res = 1
 

@@ -9,24 +9,21 @@ def fibonacci(n):
     # Recursive case: fib(n) = fib(n - 1) + fib(n - 1)
     return fibonacci(n - 1) + fibonacci(n - 2)
 
-def fibonacciIterative(n):
+# T: O(n)
+# M: O(1)
+# 0,1,1,2,3,5,8,13,21,34
+def fibonacci_iterative(n):
+    if n <= 0:
+        return 0
+
+    if n == 1:
+        return 1
+
+    # Start with the first two values
     a, b = 0, 1
 
-    for i in range(n):
-        a, b = b, a + b
+    # Build up from 2 to n
+    for i in range(2, n+1):
+        a, b = b, a + b # next = prev + curr; shift
 
-    return a
-
-# n is the number of TERMS in the sequence
-def printFibonacciIterative(n):
-    a, b = 0, 1
-
-    print(a, b)
-
-    while n - 2:
-        a, b = b, a + b
-        print(a + b)
-
-        n -= 1
-
-    return a
+    return b

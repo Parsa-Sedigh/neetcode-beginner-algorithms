@@ -15,8 +15,7 @@ Recursion is all about sub problems.
 
 The best way to represent recursion -> decision tree. **If we only have 1 decision at a time -> one-branch recursion**.
 As we go down the tree, we say before computing the parent, we have to compute the children(sub-problems). When we hit
-the base case,
-we go back up to the original function call.
+the base case, we go back up to the original function call.
 
 To compute n!, we have n steps:
 
@@ -48,7 +47,7 @@ Iterative:
 recursive:
 
 - time: O(2^n)
-- space: O(n) - maximum number of calls in call stack
+- space: O(n) -> maximum recursion depth * the space required per node
 
 **Note: For Fibonacci recursive implementation or any recursive algorithm, the space required is proportional to the
 maximum depth of
